@@ -8,3 +8,5 @@ const MOUNT_NODE = document.getElementById('root');
 
 ReactDOM.render(<App />, MOUNT_NODE);
 registerServiceWorker();
+
+export default MOUNT_NODE

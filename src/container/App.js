@@ -9,7 +9,7 @@ export default class App extends React.Component {
   shouldComponentUpdate(){
     return false;
   }
-
+  
   render () {
     return (
       <Provider store={this.props.store}>

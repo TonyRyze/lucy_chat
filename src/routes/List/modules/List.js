@@ -6,7 +6,7 @@ import { createReducer } from '../../../store/reducers';
 // ------------------------------------
 // key
 // ------------------------------------
-export const key = 'hello';
+export const key = 'list';
 
 // ------------------------------------
 // Constants

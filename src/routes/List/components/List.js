@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Hello = ({ counter, increment, doubleAsync, trilbleAsync, dispatch }) => {
+const List = ({ counter, increment, doubleAsync, trilbleAsync, dispatch }) => {
   return (
-    <div className="hello">
-      <h1>hello</h1>
+    <div className="list">
+      <h1>list</h1>
       <div onClick={increment}>increment</div>
       <div onClick={doubleAsync}>doubleAsync</div>
       <div onClick={trilbleAsync}>trilbleAsync</div>
@@ -12,4 +12,4 @@ const Hello = ({ counter, increment, doubleAsync, trilbleAsync, dispatch }) => {
   )
 };
 
-export default Hello;
+export default List;
