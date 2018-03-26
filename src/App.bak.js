@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { ConnectedRouter } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import { Provider } from "react-redux";
-import { renderRoutes } from "react-router-config";
 
 import createStore from "../store/createStore";
 import reducer, { key } from "../store/location";
-import { routes } from "../routes/";
-//import Hello from '../routes/Hello';
-//import List from '../routes/List';
+
+import Hello from './routes/Hello';
+import List from './routes/List';
 
 export const store = createStore(
   {},
@@ -20,15 +19,29 @@ export const store = createStore(
 
 const history = createHistory();
 
-console.log(routes);
+const lazyLoader = importComponent =>
+  class AsyncComponent extends React.Component {
+    state = { C: null };
+
+    async componentDidMount() {
+      const { default: C } = await importComponent();
+      this.setState({ C });
+    }
+
+    render() {
+      const { C } = this.state;
+      return C ? <C {...this.props} /> : null;
+    }
+  };
+
 const App = props => {
-  return (
-    <Provider store={store}>
+  return <Provider store={store}>
       <ConnectedRouter history={history}>
         <div className="container">
           <Router>
             <Switch>
-              {renderRoutes(routes)}
+              <Route exact path="/" component={Hello} />
+              <Route path="/list" component={List} />
             </Switch>
           </Router>
           <div className="link">
@@ -40,8 +53,7 @@ const App = props => {
           </div>
         </div>
       </ConnectedRouter>
-    </Provider>
-  );
+    </Provider>;
 };
 
 export default App;

@@ -1,5 +1,5 @@
-import { applyMiddleware, compose, createStore as createReduxStore } from 'redux';
-import { routerMiddleware } from "react-router-redux";
+import { applyMiddleware, compose, createStore as createReduxStore, combineReducers } from 'redux';
+import {ConnectedRouter, connectRouter, routerMiddleware} from "connected-react-router";
 import createHistory from "history/createBrowserHistory";
 import thunk from 'redux-thunk';
 
@@ -19,7 +19,8 @@ const createStore = (initialState = {}, initialReducer = {}) => {
   }
   
   const store = createReduxStore(
-    makeRootReducer(initialReducer),
+    connectRouter(history)(combineReducers(initialReducer)),
+    // makeRootReducer(initialReducer),
     initialState,
     composeEnhancers(
       applyMiddleware(...middleware), 
@@ -35,7 +36,7 @@ const createStore = (initialState = {}, initialReducer = {}) => {
       store.replaceReducer(reducers(store.asyncReducers));
     });
   }
-
+  
   store.asyncReducers = { ...initialReducer };
   
   return store;
