@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import locationReducer from './location';
 
 export const makeRootReducer = asyncReducers => combineReducers({
+  location: locationReducer,
   ...asyncReducers 
 });
 

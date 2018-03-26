@@ -27,7 +27,7 @@ const createStore = (initialState = {}, initialReducer = {}) => {
       ...enhancers
     )
   );
-
+  
   store.unsubscribeHistory = history.listen(updateLocation(store));
 
   if (module.hot) {

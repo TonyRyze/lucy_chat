@@ -25,20 +25,20 @@ const App = props => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <div className="container">
           <Router>
-            <Switch>
-              {renderRoutes(routes)}
-            </Switch>
+            <div className="container">
+              <Switch>
+                {renderRoutes(routes)}
+              </Switch>
+              <div className="link">
+                <Link to={{ pathname: "/", state: { name: "ryan" } }}>Hello</Link>
+                <br />
+                <Link to={{ pathname: "/list", state: { name: "jey" } }}>
+                  List
+                </Link>
+              </div>
+            </div>
           </Router>
-          <div className="link">
-            <Link to={{ pathname: "/", state: { name: "ryan" } }}>Hello</Link>
-            <br />
-            <Link to={{ pathname: "/list", state: { name: "jey" } }}>
-              List
-            </Link>
-          </div>
-        </div>
       </ConnectedRouter>
     </Provider>
   );
