@@ -28,7 +28,7 @@ const createStore = (initialState = {}, initialReducer = {}) => {
     )
   );
   
-  store.unsubscribeHistory = history.listen(updateLocation(store));
+  // store.unsubscribeHistory = history.listen(updateLocation(store));
 
   if (module.hot) {
     module.hot.accept("./reducers", () => {
